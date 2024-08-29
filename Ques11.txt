@@ -1,0 +1,27 @@
+// PRINT ALL THE ELEMENTS OF THE ARRAY AND ALSO FIND THE GREATEST ELEMENT OF THE ARRAY
+
+public class Ques11 {
+    static void printArray(int[] arr, int idx) {
+        if (idx == -1)
+            return;
+        printArray(arr, idx - 1);
+        System.out.println(arr[idx] + " ");
+    }
+    static int maxElement(int[] arr, int idx){
+        if(idx==arr.length-1){
+            return arr[idx];
+        }
+        int smallAns = maxElement(arr, idx+1);
+        if(arr[idx] > smallAns){
+            return arr[idx];
+        }
+        else return smallAns;
+
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 0, 5, 2, 1, 4 };
+        // printArray(arr, arr.length - 1)
+        System.out.println(maxElement(arr, 0));
+    }
+}

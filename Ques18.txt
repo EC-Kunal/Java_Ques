@@ -1,0 +1,54 @@
+// GIVEN A STRING, WRITE A METHOD TO RETURN ALL ITS SUBSEQUENCES IN AN ARRAYLIST
+// INPUT--> "abc"  OUTPUT--> ["",abc","a","b","c","ab","bc","ac"]
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Ques18 {
+
+    static ArrayList<String> SSQ(String str) {
+        ArrayList<String> ans = new ArrayList<>();
+        if (str.length() == 0) {
+            ans.add("");
+            return ans;
+
+        }
+
+        char ch = str.charAt(0);
+        ArrayList<String> smallAns = SSQ(str.substring(1, str.length()));
+
+        for (String ss : smallAns) {
+            ans.add(ss);
+            ans.add(ch + ss);
+        }
+        return ans;
+    }
+
+    static void printSSQ(String str, String currAns) {
+        if (str.length() == 0) {
+            System.out.println(currAns);
+            return;
+        }
+        char curr = str.charAt(0);
+        String rem = str.substring(1);
+
+        // curr Char -> choses to be a part of currAns
+        printSSQ(rem, currAns + curr);
+        // curr Char -> not choses to be part of currAns
+        printSSQ(rem, currAns);
+
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String str = sc.next();
+        printSSQ(str, "");
+        ArrayList<String> ans = SSQ(str);
+        for (String ss : ans) {
+        System.out.println(ss);
+        }
+
+        sc.close();
+    }
+}

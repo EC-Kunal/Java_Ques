@@ -1,0 +1,43 @@
+// FIND ALL THE INDICES OF THE INTEGER x IN THE GIVEN ARRAY
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Ques14 {
+    static void findIndices(int[] arr, int idx, int val) {      //PRINTING THE INDICES
+        if (idx > arr.length - 1)
+            return;
+        if (arr[idx] == val) {
+            System.out.println("Element found at index " + idx + " ");
+        }
+        findIndices(arr, idx + 1, val);
+    }
+
+    static ArrayList<Integer> findAllIndices(int[] arr, int idx, int val) {     //RETURNING ARRAYLIST
+        if (idx > arr.length - 1) {
+            return new ArrayList<Integer>();
+        }
+        ArrayList<Integer> ans = new ArrayList<>();
+        if (arr[idx] == val) {
+            ans.add(idx);
+        }
+        ArrayList<Integer> smallAns = findAllIndices(arr, idx + 1, val);
+        ans.addAll(smallAns);
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number you want to search: ");
+        int n = sc.nextInt();
+        int[] arr = { 1, 2, 3, 2, 4, 5, 2 };
+        // findIndices(arr, 0, n);
+        ArrayList<Integer> ans = findAllIndices(arr, 0, n);
+        for (Integer i : ans) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        sc.close();
+    }
+}

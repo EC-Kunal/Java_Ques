@@ -1,0 +1,28 @@
+// GIVEN A NUMBER n. FIND THE SUM OF NATURAL NUMBERS TILL n
+// ALSO FIND SUM OF NATURAL NUMBERS TILL n WITH ALTERNATE SIGNS
+
+
+public class Ques8 {
+    static int sum(int n){
+        if(n==1) return 1;
+        int ans = n + sum(n-1);
+        return ans;
+    }
+    static int alternateSum(int n){
+        if(n==0){
+            return 0;
+        }
+        if(n%2==0){
+            int ans = alternateSum(n-1) - n;
+            return ans;
+        }
+        else{
+            int ans = alternateSum(n-1) + n;
+            return ans;
+        }
+    }
+    public static void main(String[] args) {
+    //  System.out.println(sum(5)); 
+    System.out.println(alternateSum(6));  
+    }
+}

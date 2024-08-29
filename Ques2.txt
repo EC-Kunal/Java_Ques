@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class Ques2 {
+    public static HashMap<Character, Integer> frequencyMap(String str) {
+        HashMap<Character, Integer> h = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            Character a = str.charAt(i);
+            if (!h.containsKey(a)) {
+                h.put(a, 1);
+            } else {
+                h.put(a, h.get(a) + 1);
+            }
+        }
+        return h;
+    }
+
+    public static void anagram(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            System.out.println("Given words are not Anagrams!!");
+            return;
+        }
+        HashMap<Character, Integer> m1 = frequencyMap(str1);
+        HashMap<Character, Integer> m2 = frequencyMap(str2);
+
+        System.out.println(m1);
+        System.out.println(m2);
+        if (m1.equals(m2)) {
+            System.out.println("Given words are Anagrams!!");
+        } else {
+            System.out.println("Given words are not Anagrams");
+        }
+
+    }
+
+    public static void main(String[] args) {
+        String str1 = "listen";
+        String str2 = "silent";
+        anagram(str1, str2);
+
+    }
+}
